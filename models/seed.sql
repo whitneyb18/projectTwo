@@ -1,0 +1,77 @@
+CREATE TABLE users (
+  id INT NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(200) NULL,
+  last_name VARCHAR(200) NULL,
+  email VARCHAR(200) NULL,
+  password VARCHAR(200) NULL,
+  created_date datetime not null,
+  last_active_date datetime not null,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE restuarants (
+  id INT NOT NULL AUTO_INCREMENT,
+  restaurant_name VARCHAR(200) NULL,
+  restaurant_type VARCHAR(200) NULL,
+  restaurant_latitude VARCHAR(200) NULL,
+  restaurant_longitude VARCHAR(200) NULL,
+  restaurant_url VARCHAR(200) NULL,
+  -- place_id VARCHAR(200) NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE favorites (
+  id INT NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  restaurant_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (restaurant_id) REFERENCES restuarants(id)
+);
+
+CREATE TABLE last_search (
+  id INT NOT NULL AUTO_INCREMENT,
+  user_id INT, 
+  food_type_0 BOOLEAN NOT NULL,
+  food_type_0_result_1 INT NULL,
+  food_type_0_result_2 INT NULL,
+  food_type_0_result_3 INT NULL,
+  food_type_1 BOOLEAN NOT NULL,
+  food_type_1_result_1 INT NULL,
+  food_type_1_result_2 INT NULL,
+  food_type_1_result_3 INT NULL,
+  food_type_2 BOOLEAN NOT NULL,
+  food_type_2_result_1 INT NULL,
+  food_type_2_result_2 INT NULL,
+  food_type_2_result_3 INT NULL,
+  food_type_3 BOOLEAN NOT NULL,
+  food_type_3_result_1 INT NULL,
+  food_type_3_result_2 INT NULL,
+  food_type_3_result_3 INT NULL,
+  food_type_4 BOOLEAN NOT NULL,
+  food_type_4_result_1 INT NULL,
+  food_type_4_result_2 INT NULL,
+  food_type_4_result_3 INT NULL,
+  food_type_5 BOOLEAN NOT NULL,
+  food_type_5_result_1 INT NULL,
+  food_type_5_result_2 INT NULL,
+  food_type_5_result_3 INT NULL,
+  food_type_6 BOOLEAN NOT NULL,
+  food_type_6_result_1 INT NULL,
+  food_type_6_result_2 INT NULL,
+  food_type_6_result_3 INT NULL,
+  food_type_7 BOOLEAN NOT NULL,
+  food_type_7_result_1 INT NULL,
+  food_type_7_result_2 INT NULL,
+  food_type_7_result_3 INT NULL,
+  food_type_8 BOOLEAN NOT NULL,
+  food_type_8_result_1 INT NULL,
+  food_type_8_result_2 INT NULL,
+  food_type_8_result_3 INT NULL,
+  food_type_9 BOOLEAN NOT NULL,
+  food_type_9_result_1 INT NULL,
+  food_type_9_result_2 INT NULL,
+  food_type_9_result_3 INT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES users(id),
+);
