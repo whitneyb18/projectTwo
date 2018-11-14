@@ -22,7 +22,11 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-require("./routes/apiRoutes")(app);
+require("./routes/favorites-api-routes")(app);
+require("./routes/index-api-routes")(app);
+require("./routes/last-search-api-routes")(app);
+require("./routes/restaurants-api-routes")(app);
+require("./routes/users-api-routes")(app);
 require("./routes/htmlRoutes")(app);
 
 var syncOptions = { force: false };

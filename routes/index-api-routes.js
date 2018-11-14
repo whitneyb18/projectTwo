@@ -1,7 +1,7 @@
-// var db = require("../models");
+var db = require("../models");
 
-// module.exports = function(app) {
-//   // Get all examples
+module.exports = function(app) {
+  // Get all examples
 //   app.get("/api/favorites", function(req, res) {
 //     db.Restaurants.findAll({}).then(function(dbExamples) {
 //       res.json(dbExamples);
@@ -21,4 +21,4 @@
 //       res.json(dbExample);
 //     });
 //   });
-// };
+};
