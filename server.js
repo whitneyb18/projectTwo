@@ -1,6 +1,7 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+var session = require('express-session');
 
 var db = require("./models");
 
@@ -12,6 +13,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 
+app.use(session({
+  secret: process.env.SESSIONSECRET || "keybordcat",
+  resave: false,
+  saveUninitialized: true
+}));
+
+//middleware for setting up a user object when anyone first come to the appplication
+function userSetup(req, res, next){
+  if(!req.session.user){
+    req.session.user = {}
+    req.session.user.loggedIn = false;
+  }
+  next()
+}
+
+//using middlewhere acrossed the entire application before any route gets hit.
+app.use(userSetup)
 // Handlebars
 app.engine(
   "handlebars",
