@@ -9,7 +9,7 @@ module.exports = function(app) {
     });
   });
 
-  // Create a new example
+  // Create a new USER
   app.post("/api/users", function(req, res) {
     console.log(req.body)
     //to store a hased password into the database we need to first salt our password. this will tell bcrypt how many time to pass through the users password to generate the hash
@@ -59,7 +59,8 @@ module.exports = function(app) {
     //using our users model to query our MySQL database for user info where ther username equals the username we passed in from the front end
     db.Users.findOne({
       where: {
-       email: req.body.email
+       email: req.body.email,
+
       }
     })
       .then(function (dbData) {
@@ -67,7 +68,7 @@ module.exports = function(app) {
         //this is how we would correctly do a check for a null value if recieved
         if (!dbData && typeof dbData === "object"){
           //this will send an error code to our front end for the user not existing
-          res.status(404).send('ohhh no, there is a problem with the username or password!')
+          res.status(200).send('ohhh no, there is a problem with the username or password!')
         }else{
           //here we bring in bcrypt. bcrypt's compair method asks for a few things. it asks for the first parameter you send in a plain text password. 
           //AKA: our users password coming in from the front end. the second parameter bcrypt wants us to pass in the hashed password that we stored in the db. lastly it wants a callback funtion
@@ -99,46 +100,41 @@ module.exports = function(app) {
         }
       });
   })
-
-  //endpoint for grabbing session user object to be used accrossed entire app.
-  app.get("/api/session", function(req, res, next){
-    res.json(req.session.user)
-  });
   
   //get user info endpoint via query params
-  app.get('/api/profile/:username', function(req, res, next){
+  app.get('/api/profile/:email', function (req, res, next) {
     console.log(req.param);
     db.users.findOne({
       where: {
-        username: req.params.username
+        email: req.params.email
       }
     }).then(function(dbData){
       console.log(dbData)
       var userObj = {
         id: dbData.dataValues.id,
-        name: dbData.dataValues.name,
-        username: dbData.dataValues.username,
-        email: dbData.dataValues.email,
-        profilePic: dbData.dataValues.profilePic
+        first_name: dbData.dataValues.first_name,
+        last_name: dbData.dataValues.last_name,
+        email: dbData.dataValues.email
       }
       req.session.user.loggedIn = true;
-      req.session.user.currentUser = userObj;
+      req.session.user = userObj;
       res.json(userObj)
     })
   });
+  
   //update profile route
-  app.put('/api/update/:username', function(req, res, next){
-    req.session.user.currentUser = req.body
-    var loggedUser = req.session.user.currentUser;
-    if(true){
+  app.put('/api/update/:email', function (req, res, next) {
+    var loggedUser = req.session.user.loggedIn;
+    req.session.user = req.body
+    if(loggedUser){
       db.users.update({
-        username: loggedUser.username,
-        name: loggedUser.name,
-        email: loggedUser.email,
-        profilePic: loggedUser.profilePic
+        id: dbData.dataValues.id,
+        first_name: dbData.dataValues.first_name,
+        last_name: dbData.dataValues.last_name,
+        email: dbData.dataValues.email
       }, {
           where: {
-            username: req.params.username
+            email: req.params.email
           }
         }).then(function (dbData) {
           res.json(dbData.dataValues)
@@ -146,5 +142,10 @@ module.exports = function(app) {
     }else{
       res.status(404).json("please log in to update profile")
     }
+  });
+
+  //endpoint for grabbing session user object to be used accrossed entire app.
+  app.get("/api/session", function (req, res, next) {
+    res.json(req.session.user)
   });
 };

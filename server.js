@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 
+//cookie middleware
 app.use(session({
   secret: process.env.SESSIONSECRET || "keybordcat",
   resave: false,
@@ -30,6 +31,7 @@ function userSetup(req, res, next){
 
 //using middlewhere acrossed the entire application before any route gets hit.
 app.use(userSetup)
+
 // Handlebars
 app.engine(
   "handlebars",
