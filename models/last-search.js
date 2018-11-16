@@ -1,6 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
   var Last_Search = sequelize.define("Last_Search", {
-    user_id: DataTypes.INTEGER,
     food_type_0: DataTypes.BOOLEAN,
     food_type_0_result_1: DataTypes.INTEGER,
     food_type_0_result_2: DataTypes.INTEGER,

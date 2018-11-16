@@ -31,7 +31,8 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Users.hasOne(models.Last_Search, {
-      onDelete: "cascade"
+      onDelete: "cascade",
+      as: "last_search"
     });
   };
 
