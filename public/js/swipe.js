@@ -1,15 +1,21 @@
 $(document).ready(function () {
 
     var currentFood = 0;
+    var yesPlease = [];
 
     $(document.body).on("click", "#btn-yes", function () {
         if (currentFood < 9) {
             console.log("yes")
+            yesPlease.push(foodTypeImage[currentFood].type)
             currentFood++
             $("#swipe-box").empty()
             displayFood(currentFood)
+            console.log(yesPlease);
         } else {
-            alert("thinking");
+            yesPlease.push(foodTypeImage[currentFood].type)
+            console.log(yesPlease);
+            getGeolocation();
+
         }
     });
 
@@ -21,9 +27,9 @@ $(document).ready(function () {
             $("#swipe-box").empty()
             displayFood(currentFood)
         } else {
+            getGeolocation()
             alert("thinking...")
         }
-
 
 
     });
@@ -112,6 +118,84 @@ $(document).ready(function () {
 
 
     displayFood(currentFood)
+
+
+
+
+
+    // getRestaurantInfomration()
+
+    // function getRestaurantInfomration() {
+
+    //################ executables
+
+    var map;
+    var infowindow;
+
+
+
+    //#################### Functions 
+
+    function getGeolocation() {
+        var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAN-Maosba3R24Xqxv3aT-ZHcZ16dbzbdA"
+        $.ajax({
+            url: queryURL,
+            method: "POST"
+
+        }).then(function (response) {
+            yourLocationInformation = {
+                lat: response.location.lat,
+                lng: response.location.lng
+            }
+            searchForFood(yourLocationInformation)
+            // console.log(yourLocationInformation)
+        });
+    };
+
+    function searchForFood(yourLocationInformation) {
+
+        var userLocation = yourLocationInformation
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: userLocation,
+            zoom: 15
+        });
+
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.textSearch({
+            location: userLocation,
+            radius: 1000,
+            type: ['restaurant'],
+            query: yesPlease[0],
+        }, callback);
+    }
+
+
+    function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+                console.log(results[i])
+                console.log(results[i].name)
+                console.log(results[i].formatted_address)
+            }
+        }
+    }
+
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function () {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+        });
+    }
+
+    // }
 
 
 

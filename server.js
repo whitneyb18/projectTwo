@@ -9,7 +9,9 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(express.json());
 app.use(express.static("public"));
 
@@ -21,8 +23,8 @@ app.use(session({
 }));
 
 //middleware for setting up a user object when anyone first come to the appplication
-function userSetup(req, res, next){
-  if(!req.session.user){
+function userSetup(req, res, next) {
+  if (!req.session.user) {
     req.session.user = {}
     req.session.user.loggedIn = false;
   }
@@ -48,8 +50,11 @@ require("./routes/last-search-api-routes")(app);
 require("./routes/restaurants-api-routes")(app);
 require("./routes/users-api-routes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/googleAPIRoutes")(app);
 
-var syncOptions = { force: false };
+var syncOptions = {
+  force: false
+};
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
@@ -58,8 +63,8 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
