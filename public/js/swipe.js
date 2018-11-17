@@ -130,7 +130,7 @@ $(document).ready(function () {
     //#################### Functions
 
     function getGeolocation() {
-        var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAN-Maosba3R24Xqxv3aT-ZHcZ16dbzbdA"
+        var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key="
         $.ajax({
             url: queryURL,
             method: "POST"
