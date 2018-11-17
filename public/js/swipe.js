@@ -3,22 +3,22 @@ $(document).ready(function () {
     var infowindow;
 
     var currentFood = 0;
-    var typeOfFoodToSerach;
-    var otherObejct = [];
+    var typeOfFoodToSearch;
+    var otherObject = [];
 
     $(document.body).on("click", "#btn-yes", function () {
         if (currentFood < 9) {
-            typeOfFoodToSerach = foodTypeImage[currentFood].type
+            typeOfFoodToSearch = foodTypeImage[currentFood].type
             currentFood++
             $("#swipeImg").empty();
             $("#buttonRow").empty();
             displayFood(currentFood)
             getGeolocation();
         } else {
-            typeOfFoodToSerach = foodTypeImage[currentFood].type
-            // console.log(typeOfFoodToSerach)
+            typeOfFoodToSearch = foodTypeImage[currentFood].type
+            // console.log(typeOfFoodToSearch)
             getGeolocation();
-            // console.log(otherObejct)
+          
             $.ajax({
                 url: "/results",
                 method: "GET"
@@ -59,7 +59,7 @@ $(document).ready(function () {
         {
             image: "../images/foodTiles/bakeryFood.jpg",
             column: "food_type_2",
-            type: "soup, salad, sandwiches"
+            type: "salad"
         },
         {
             image: "../images/foodTiles/americanFood.jpg",
@@ -147,7 +147,7 @@ $(document).ready(function () {
     //#################### Functions
 
     function getGeolocation() {
-        var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key="
+        var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAN-Maosba3R24Xqxv3aT-ZHcZ16dbzbdA"
         $.ajax({
             url: queryURL,
             method: "POST"
@@ -176,7 +176,7 @@ $(document).ready(function () {
             location: userLocation,
             radius: 500,
             type: ['restaurant'],
-            query: typeOfFoodToSerach,
+            query: typeOfFoodToSearch,
         }, callback);
     }
 
@@ -190,10 +190,23 @@ $(document).ready(function () {
                 // console.log(results[i].name)
                 // console.log(results[i].formatted_address)
                 // console.log(results[i].place_id)
-                otherObejct.push({name: results[i].name,
-                    address:results[i].formatted_address,
-                    placeId: results[i].place_id});
-                    console.log(otherObejct)
+                // otherObject.push({type: typeOfFoodToSearch,
+                //     name: results[i].name,
+                //     address:results[i].formatted_address,
+                //     placeId: results[i].place_id});
+                    // console.log(otherObject)
+                    $.ajax({
+                        url: "/api/restaurants",
+                        method: "POST",
+                        data: {
+                            type: typeOfFoodToSearch,
+                            name: results[i].name,
+                            address: results[i].formatted_address,
+                            placeId: results[i].place_id
+                        }
+                    }).then(function() {
+                        
+                    })
 
             }
         }

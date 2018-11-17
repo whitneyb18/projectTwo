@@ -2,9 +2,8 @@ module.exports = function(sequelize, DataTypes) {
   var Restaurants = sequelize.define("Restaurants", {
     restaurant_name: DataTypes.STRING,
     restaurant_type: DataTypes.STRING,
-    restaurant_latitude: DataTypes.STRING,
-    restaurant_longitude: DataTypes.STRING,
-    restaurant_place_id: DataTypes.INTEGER,
+    restaurant_address: DataTypes.STRING,
+    restaurant_place_id: DataTypes.STRING,
   });
 
   Restaurants.associate = function(models) {
