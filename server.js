@@ -2,6 +2,7 @@ require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
 var session = require('express-session');
+console.log(process.env.SOME_KEY)
 
 var db = require("./models");
 

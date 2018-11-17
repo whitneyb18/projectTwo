@@ -21,14 +21,19 @@ module.exports = function(app) {
 
   // add a new restaurant
   app.post("/api/restaurants", function(req, res) {
+    console.log(req.session)
     res.send(200);
     db.Restaurants.findAll({
       where: {
         restaurant_place_id: req.body.placeId
       }
     }).then(function(dbRes) {
+      console.log(dbRes)
       if (dbRes.length) {
-          res.status(400).send();
+          db.Last_Search.create({
+            user_id: req.session.user.id,
+            restaurant_id: dbRes[0].dataValues.id
+          })
         }
       else {
         db.Restaurants.create({
@@ -37,14 +42,13 @@ module.exports = function(app) {
           restaurant_address: req.body.address,
           restaurant_place_id: req.body.placeId
         }).then(function(dbRes) {
-          console.log(dbRes);
+          console.log(dbRes.dataValues.id);
+          db.Last_Search.create({
+            user_id: req.session.user.id,
+            restaurant_id: dbRes[0].dataValues.id
+          })
         });
       }
     })
-
-    // db.Last_Search.create({
-    //   user_id: req.body.user_id,
-    //   restaurant_id: req.body.restaurant_id
-    // })
   });
   };
