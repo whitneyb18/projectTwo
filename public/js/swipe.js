@@ -8,7 +8,8 @@ $(document).ready(function () {
             console.log("yes")
             yesPlease.push(foodTypeImage[currentFood].type)
             currentFood++
-            $("#swipe-box").empty()
+            $("#swipeImg").empty();
+            $("#buttonRow").empty();
             displayFood(currentFood)
             console.log(yesPlease);
         } else {
@@ -24,7 +25,8 @@ $(document).ready(function () {
             console.log("no")
             console.log(foodTypeImage.length);
             currentFood++
-            $("#swipe-box").empty()
+            $("#swipeImg").empty()
+            $("#buttonRow").empty();
             displayFood(currentFood)
         } else {
             getGeolocation()
@@ -37,81 +39,96 @@ $(document).ready(function () {
     var foodTypeImage = [{
             image: "../images/foodTiles/mexicanFood.jpg",
             column: "food_type_0",
-            type: "Mexican"
+            type: "mexican"
         },
         {
             image: "../images/foodTiles/italianFood.jpg",
             column: "food_type_1",
-            type: "Italian"
+            type: "italian"
         },
         {
             image: "../images/foodTiles/bakeryFood.jpg",
             column: "food_type_2",
-            type: "Soup, Salad, Sandwiches"
+            type: "soup, salad, sandwiches"
         },
         {
             image: "../images/foodTiles/americanFood.jpg",
             column: "food_type_3",
-            type: "American"
+            type: "american"
         },
         {
             image: "../images/foodTiles/breakfastFood.jpg",
             column: "food_type_4",
-            type: "Breakfast"
+            type: "breakfast"
         },
         {
             image: "../images/foodTiles/thaiFood.jpg",
             column: "food_type_5",
-            type: "Thai"
+            type: "thai"
         },
         {
             image: "../images/foodTiles/chineseFood.jpg",
             column: "food_type_6",
-            type: "Chinese"
+            type: "chinese"
         },
         {
             image: "../images/foodTiles/indianFood.jpg",
             column: "food_type_7",
-            type: "Indian"
+            type: "indian"
         },
         {
             image: "../images/foodTiles/pizzaFood.jpg",
             column: "food_type_8",
-            type: "Pizza"
+            type: "pizza"
         },
         {
             image: "../images/foodTiles/dessertFood.jpg",
             column: "food_type_9",
-            type: "Dessert"
+            type: "dessert"
         }
     ]
 
     function displayFood(currentFood) {
 
+        // create div for food title and image
         var foodTypeDiv = $("<div>")
         foodTypeDiv.addClass("foodDiv")
         foodTypeDiv.attr("data-food", foodTypeImage[currentFood].type)
 
         var image = $("<img>").attr("src", foodTypeImage[currentFood].image)
         image.addClass("swipe-img")
-        var type = $("<p>").text(foodTypeImage[currentFood].type)
+        var type = $("<h3>").text(foodTypeImage[currentFood].type)
         type.addClass("foodText");
 
-        var yesBtn = $("<button>").text("Yes")
+        // create buttons
+        var yesBtn = $("<button>")
         yesBtn.addClass("btn btn-primary")
         yesBtn.attr("id", "btn-yes")
+        var checkYes = $("<i>");
+        checkYes.addClass("fas fa-check");
+        yesBtn.append(checkYes);
 
 
-        var noBtn = $("<button>").text("No")
+        var noBtn = $("<button>")
         noBtn.addClass("btn btn-primary")
         noBtn.attr("id", "btn-no")
+        var fafaNo = $("<i>");
+        fafaNo.addClass("fas fa-times");
+        noBtn.append(fafaNo);
+
+
+        var buttonDiv = $("<div>");
+        buttonDiv.addClass("centerButtons");
 
         foodTypeDiv.append(image)
         foodTypeDiv.append(type)
-        foodTypeDiv.append(yesBtn)
-        foodTypeDiv.append(noBtn)
 
-        $("#swipe-box").append(foodTypeDiv);
+
+        buttonDiv.append(yesBtn);
+        buttonDiv.append(noBtn);
+
+        $("#swipeImg").append(foodTypeDiv);
+        $("#buttonRow").append(buttonDiv);
     }
 
 
