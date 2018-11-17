@@ -21,8 +21,30 @@ module.exports = function(app) {
 
   // add a new restaurant
   app.post("/api/restaurants", function(req, res) {
-    db.Restaurants.create(req.body).then(function(dbRes) {
-      res.json(dbRes);
-    });
+    res.send(200);
+    db.Restaurants.findAll({
+      where: {
+        restaurant_place_id: req.body.placeId
+      }
+    }).then(function(dbRes) {
+      if (dbRes.length) {
+          res.status(400).send();
+        }
+      else {
+        db.Restaurants.create({
+          restaurant_name: req.body.name,
+          restaurant_type: req.body.type,
+          restaurant_address: req.body.address,
+          restaurant_place_id: req.body.placeId
+        }).then(function(dbRes) {
+          console.log(dbRes);
+        });
+      }
+    })
+
+    // db.Last_Search.create({
+    //   user_id: req.body.user_id,
+    //   restaurant_id: req.body.restaurant_id
+    // })
   });
-};
+  };

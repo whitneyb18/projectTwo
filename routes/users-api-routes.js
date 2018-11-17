@@ -150,6 +150,6 @@ module.exports = function (app) {
 
   //endpoint for grabbing session user object to be used accrossed entire app.
   app.get("/api/session", function (req, res, next) {
-    res.json(req.session.user)
+    console.log(req.session.user.id)
   });
 };

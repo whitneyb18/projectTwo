@@ -42,21 +42,17 @@ module.exports = function(app) {
     })
   });
 
+   //delete a favorite for a user - NOT WORKING YET NEED TEST DATA
+   app.delete("/api/last-search/:id", function(req, res) {
+    db.Last-Search.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbRes) {
+      res.json(dbRes);
+    });
+  });
 
 
-  // app.get("/api/last-search/:id/:column/:value", function(req, res) {
-  //   var userID = req.param.id;
-  //   var column = req.param.column;
-  //   var value = req.param.value;
-
-  //   db.Last_Search.findOne({
-  //     where: {
-  //       UserId: 1
-  //     }
-  //   }).then(function(user) {
-  //     user.find(column,value).save().then(function(dbRes) {
-  //       res.json(dbRes)
-  //     }) 
-  //   })
-  // });
+ 
 };

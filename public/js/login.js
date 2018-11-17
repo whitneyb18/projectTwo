@@ -29,12 +29,12 @@ $("#signIn").on('click', function(event){
     data: userData
   }).then(function(res){
     console.log(res);
-    // $.ajax({
-    //       url: "/api/session",
-    //       method: "GET",
-    //     }).then(function(res){
-    //       console.log(res);
-    //     })
+    $.ajax({
+          url: "/api/session",
+          method: "GET",
+        }).then(function(res){
+          console.log(res);
+        })
     location.href = "/profile"
   })
 });
