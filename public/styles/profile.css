@@ -1,3 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
+body {
+    background: url(../images/white_tiles_@2X.png);
+}
+
+h1 {
+    font-family: 'Dosis', sans-serif;
+    margin-top: 8rem;
+    font-size: 72px;
+    font-weight: bold;
+}
+
+.imgText {
+    font-family: 'Dosis', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.card-img-top {
+    margin-top: 10px;
+    /* box-shadow: 2px 2px #e0e0e0c0; */
+    border: 1px solid #b8b8b8c0;
+    border-radius: 4px;
+}
+
+a {
+    color: black;
+}
+
 .col-lg-4 {
     margin-left: auto;
     margin-right: auto;
@@ -5,7 +35,7 @@
 
 .card-body {
     margin: 0px;
-  }
+}
 
 /* Centered text */
 .centered {
@@ -13,15 +43,63 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
 
-@media screen and (max-width: 768px) {
+.container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 990px) {
+    h1 {
+        font-family: 'Dosis', sans-serif;
+        margin-top: 15px;
+        font-size: 48px;
+
+    }
+
     .col-lg-4 {
         margin-left: auto;
         margin-right: auto
     }
 
     .container {
-        width: 500px;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
     }
-  }
+
+    .card-img-top {
+        margin-top: 10px;
+        box-shadow: 2px 5px #888888;
+    }
+}
+
+
+
+@media screen and (max-width: 765px) {
+    h1 {
+        font-family: 'Dosis', sans-serif;
+        margin-top: 15px;
+        font-size: 36px;
+    }
+
+    .col-lg-4 {
+        margin-left: auto;
+        margin-right: auto
+    }
+
+    .container {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .card-img-top {
+        margin-top: 10px;
+    }
+
+}
