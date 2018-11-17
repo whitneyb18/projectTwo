@@ -1,36 +1,46 @@
 $(document).ready(function () {
+    var map;
+    var infowindow;
 
     var currentFood = 0;
-    var yesPlease = [];
+    var typeOfFoodToSerach;
+    var otherObejct = [];
 
     $(document.body).on("click", "#btn-yes", function () {
         if (currentFood < 9) {
-            console.log("yes")
-            yesPlease.push(foodTypeImage[currentFood].type)
+            typeOfFoodToSerach = foodTypeImage[currentFood].type
             currentFood++
             $("#swipe-box").empty()
             displayFood(currentFood)
-            console.log(yesPlease);
-        } else {
-            yesPlease.push(foodTypeImage[currentFood].type)
-            console.log(yesPlease);
             getGeolocation();
-
+        } else {
+            typeOfFoodToSerach = foodTypeImage[currentFood].type
+            // console.log(typeOfFoodToSerach)
+            getGeolocation();
+            // console.log(otherObejct)
+            $.ajax({
+                url: "/results",
+                method: "GET"
+            }).then(function() {
+                location.href = "/results"
+            })
         }
+
     });
 
     $(document.body).on("click", "#btn-no", function () {
         if (currentFood < 9) {
-            console.log("no")
-            console.log(foodTypeImage.length);
             currentFood++
             $("#swipe-box").empty()
             displayFood(currentFood)
         } else {
-            getGeolocation()
-            alert("thinking...")
+            $.ajax({
+                url: "/results",
+                method: "GET"
+            }).then(function() {
+                location.href = "/results"
+            })
         }
-
 
     });
 
@@ -114,27 +124,10 @@ $(document).ready(function () {
         $("#swipe-box").append(foodTypeDiv);
     }
 
-
-
-
     displayFood(currentFood)
 
 
-
-
-
-    // getRestaurantInfomration()
-
-    // function getRestaurantInfomration() {
-
-    //################ executables
-
-    var map;
-    var infowindow;
-
-
-
-    //#################### Functions 
+    //#################### Functions
 
     function getGeolocation() {
         var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAN-Maosba3R24Xqxv3aT-ZHcZ16dbzbdA"
@@ -164,20 +157,27 @@ $(document).ready(function () {
         var service = new google.maps.places.PlacesService(map);
         service.textSearch({
             location: userLocation,
-            radius: 1000,
+            radius: 500,
             type: ['restaurant'],
-            query: yesPlease[0],
+            query: typeOfFoodToSerach,
         }, callback);
     }
 
 
     function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
+            // limiting only to three.
+            for (var i = 0; i < 3; i++) {
                 createMarker(results[i]);
-                console.log(results[i])
-                console.log(results[i].name)
-                console.log(results[i].formatted_address)
+                // console.log(results[i])
+                // console.log(results[i].name)
+                // console.log(results[i].formatted_address)
+                // console.log(results[i].place_id)
+                otherObejct.push({name: results[i].name,
+                    address:results[i].formatted_address,
+                    placeId: results[i].place_id});
+                    console.log(otherObejct)
+
             }
         }
     }
@@ -188,16 +188,13 @@ $(document).ready(function () {
             map: map,
             position: place.geometry.location
         });
-
+        
         google.maps.event.addListener(marker, 'click', function () {
             infowindow.setContent(place.name);
             infowindow.open(map, this);
+            
         });
+    
     }
-
-    // }
-
-
-
 
 })

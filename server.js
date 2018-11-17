@@ -50,7 +50,6 @@ require("./routes/last-search-api-routes")(app);
 require("./routes/restaurants-api-routes")(app);
 require("./routes/users-api-routes")(app);
 require("./routes/htmlRoutes")(app);
-require("./routes/googleAPIRoutes")(app);
 
 var syncOptions = {
   force: false
