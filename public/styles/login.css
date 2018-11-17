@@ -1,0 +1,50 @@
+body {
+    background-image: url("../images/heather-schwartz-798959-unsplash-landscape.jpg");
+    background-repeat: no-repeat center bottom;
+    background-size: cover;
+} 
+
+ html {
+    min-height: 100%;
+}
+
+.hero-container {
+    margin-top: 200px;
+}
+
+.title {
+    font-size: 200px;
+    color: #343a40;
+}
+
+.dine-logo {
+    font-size: 50px;
+    color: #343a40;
+    padding-bottom: 25px;
+}
+
+.form-signin, .form-signup {
+    padding: 200px;
+    color: #343a40;
+}
+
+.form-title {
+    text-align: left;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        background-image: url("../images/heather-schwartz-798959-unsplash-portrait.jpg");
+        background-repeat: no-repeat center bottom;
+        background-size: cover;
+    }
+
+    .form-signin, .form-signup {
+        padding: 50px;
+        padding-top: 100px;
+    }
+
+    .title {
+        font-size: 100px;
+    }
+  }

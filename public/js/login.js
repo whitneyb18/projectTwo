@@ -1,3 +1,20 @@
+$(document).ready(function() {
+  $(".form-signup").hide();
+  $(".form-signin").hide();
+  $("#log-out-btn").hide();
+
+  $("#sign-up-btn").on("click", function() {
+    $(".hero-container").hide()
+    $(".form-signup").show()
+    });
+
+  $("#log-in-btn").on("click", function() {
+    $(".hero-container").hide()
+    $(".form-signin").show()
+    });
+
+});
+
 $("#signIn").on('click', function(event){
   event.preventDefault();
   console.log('clicked');
@@ -52,3 +69,4 @@ $("#logout").on('click', function (event) {
     console.log(res);
   })
 })
+

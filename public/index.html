@@ -19,62 +19,77 @@
 </head>
 
 <body>
-    <form class="form-signin">
+    <div class="container">
+        <div class="hero-container">
+            <h1 class="title">dine</h1>
 
-    <h1>Sign In</h1>
-     <div class="form-label-group">
-            <input type="email" id="loginEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputEmail">Email address</label>
+            <div id="options-div">
+                <button id="log-in-btn" class="btn btn-dark">Log In</button>
+                <button id="sign-up-btn" class="btn btn-dark">Sign Up</button>
+            </div>
         </div>
 
-        <div class="form-label-group">
-            <input type="password" id="loginPassword" class="form-control" placeholder="Password" required>
-            <label for="inputPassword">Password</label>
-        </div>
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
+        <!-- Sign In -->
+        <form class="form-signin">
+            <h1 class="dine-logo">dine</h1>
+            <h3 class="form-title">Sign In</h3>
 
-        <button class="btn btn-lg btn-primary btn-block" id="signIn">Sign in</button>
+            <div class="form-group">
+                <input type="email" id="loginEmail" class="form-control" placeholder="Email address" required autofocus>
+                <!-- <label for="inputEmail">Email address</label> -->
+            </div>
 
-    </form> 
+            <div class="form-group">
+                <input type="password" id="loginPassword" class="form-control" placeholder="Password" required>
+                <!-- <label for="inputPassword">Password</label> -->
+            </div>
 
-    <!-- ######################### -->
-    <form class="form-signup">
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
 
-        <div class="form-label-group">
-            <input type="firstName" id="signupFirstName" class="form-control" placeholder="First Name" required autofocus>
-            <label for="inputfirstName">First Name</label>
-        </div>
-        <div class="form-label-group">
-            <input type="lastName" id="signupLastName" class="form-control" placeholder="Last Name" required autofocus>
-            <label for="inputlastName">Last Name</label>
-        </div>
-        <div class="form-label-group">
-            <input type="email" id="signupEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputEmail">Email address</label>
-        </div>
+            <button class="btn btn-lg btn-dark" id="signIn">Sign in</button>
 
-        <div class="form-label-group">
-            <input type="password" id="signupPassword" class="form-control" placeholder="Password" required>
-            <label for="inputPassword">Password</label>
-        </div>
+        </form> 
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
+        <!-- Sign Up -->
+        <form class="form-signup">
+            <h1 class="dine-logo">dine</h1>
+            <h3 class="form-title">Sign Up</h3>
 
-        <button class="btn btn-lg btn-primary btn-block" id="signUp">Sign in</button>
+            <div class="form-group">
+                <input type="firstName" id="signupFirstName" class="form-control" placeholder="First Name" required autofocus>
+            </div>
 
-    </form>
-    <form>
-        <button class="btn btn-lg btn-primary btn-block" id="logout">Log Out</button>
-    </form>
+            <div class="form-group">
+                <input type="lastName" id="signupLastName" class="form-control" placeholder="Last Name" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <input type="email" id="signupEmail" class="form-control" placeholder="Email address" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="signupPassword" class="form-control" placeholder="Password" required>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+
+            <button class="btn btn-lg btn-dark" id="signUp">Sign in</button>
+        </form>
+
+        <!-- log out button -->
+        <form id="log-out-btn">
+            <button class="btn btn-lg btn-primary btn-block" id="logout">Log Out</button>
+        </form>
+    </div>
 
     <script src="/js/login.js"></script>
 </body>

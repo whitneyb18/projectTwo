@@ -26,10 +26,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: {
         len: [1]
-      }   
+      }
     }
 });
-
 
   Users.associate = function(models) {
     Users.belongsToMany(models.Restaurants, {
@@ -38,9 +37,10 @@ module.exports = function(sequelize, DataTypes) {
       foreignKey: "user_id"
     });
 
-    Users.hasOne(models.Last_Search, {
-      onDelete: "cascade",
-      as: "last_search"
+    Users.belongsToMany(models.Restaurants, {
+      as: "user_restaurant",
+      through: models.Last_Search,
+      foreignKey: "user_id"
     });
   };
 
