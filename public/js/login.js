@@ -70,4 +70,3 @@ $("#logout").on('click', function (event) {
   })
 })
 
-

@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
+body {
+    background: url(https://images.pexels.com/photos/1024359/pexels-photo-1024359.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* Div stylings */
+#map {
+    display: none;
+}
+
+#swipe-box {
+    width: 80%;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 15px;
+
+}
+
+.swipe-img {
+    width: 100%;
+    height: auto;
+}
+
+/* Button styling */
+#btn-yes {
+    background-color: green;
+    margin: 10px;
+    border: none;
+    font-size: 30px;
+}
+
+#btn-no {
+    background-color: red;
+    border: none;
+    margin-right: 10px;
+    font-size: 30px;
+    padding: 6px 16px 6px 16px;
+}
+
+h3 {
+    text-align: center;
+    font-family: 'Dosis', sans-serif;
+    margin-top: 10px;
+    font-size: 40px;
+}
+
+.centerButtons {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+@media only screen and (min-width: 725px) {
+    #swipe-box {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 1150px) {
+    #swipe-box {
+        width: 33%;
+    }
+}
