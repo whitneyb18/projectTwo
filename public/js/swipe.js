@@ -18,11 +18,11 @@ $(document).ready(function () {
             typeOfFoodToSearch = foodTypeImage[currentFood].type
             // console.log(typeOfFoodToSearch)
             getGeolocation();
-          
+
             $.ajax({
                 url: "/results",
                 method: "GET"
-            }).then(function() {
+            }).then(function () {
                 location.href = "/results"
             })
         }
@@ -39,7 +39,7 @@ $(document).ready(function () {
             $.ajax({
                 url: "/results",
                 method: "GET"
-            }).then(function() {
+            }).then(function () {
                 location.href = "/results"
             })
         }
@@ -147,7 +147,7 @@ $(document).ready(function () {
     //#################### Functions
 
     function getGeolocation() {
-        var queryURL = ""
+        var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=";
         $.ajax({
             url: queryURL,
             method: "POST"
@@ -194,19 +194,19 @@ $(document).ready(function () {
                 //     name: results[i].name,
                 //     address:results[i].formatted_address,
                 //     placeId: results[i].place_id});
-                    // console.log(otherObject)
-                    $.ajax({
-                        url: "/api/restaurants",
-                        method: "POST",
-                        data: {
-                            type: typeOfFoodToSearch,
-                            name: results[i].name,
-                            address: results[i].formatted_address,
-                            placeId: results[i].place_id
-                        }
-                    }).then(function() {
-                        
-                    })
+                // console.log(otherObject)
+                $.ajax({
+                    url: "/api/restaurants",
+                    method: "POST",
+                    data: {
+                        type: typeOfFoodToSearch,
+                        name: results[i].name,
+                        address: results[i].formatted_address,
+                        placeId: results[i].place_id
+                    }
+                }).then(function () {
+
+                })
 
             }
         }
@@ -218,13 +218,13 @@ $(document).ready(function () {
             map: map,
             position: place.geometry.location
         });
-        
+
         google.maps.event.addListener(marker, 'click', function () {
             infowindow.setContent(place.name);
             infowindow.open(map, this);
-            
+
         });
-    
+
     }
 
 })
