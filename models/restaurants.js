@@ -18,6 +18,12 @@ module.exports = function(sequelize, DataTypes) {
       foreignKey: "restaurant_id",
       onDelete: "cascade"
     });
+
+    Restaurants.belongsToMany(models.Users, {
+      through: models.Last_Search,
+      foreignKey: "restaurant_id",
+      onDelete: "cascade"
+    });
   };
 
   return Restaurants;

@@ -4,14 +4,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    restaurant_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
     }
   });
 
