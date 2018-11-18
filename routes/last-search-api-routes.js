@@ -11,7 +11,7 @@ module.exports = function(app) {
         }
       ],
       where: {
-        id: req.params.id
+        id: req.session.user.id
       }
     }).then(function(dbExamples) {
       res.json(dbExamples);
@@ -19,28 +19,11 @@ module.exports = function(app) {
   });
 
 // Create a new last-search
-  app.post("/api/last-search", function(req, res) {
-    db.Last_Search.create(req.body).then(function(dbRes) {
-      res.json(dbRes);
-    });
-  });
-
-  // PUT route for updating searches
-  app.put("/api/last-search/:id/:column/:value", function(req, res) {
-    var userID = req.param.id;
-    var column = req.param.column;
-    var value = req.param.value;
-
-    db.Last_Search.findOne({
-      where: {
-        UserId: userID
-      }
-    }).then(function(user) {
-      user.set(column,value).save().then(function(dbRes) {
-        res.json(dbRes)
-      }) 
-    })
-  });
+  // app.post("/api/last-search", function(req, res) {
+  //   db.Last_Search.create(req.body).then(function(dbRes) {
+  //     res.json(dbRes);
+  //   });
+  // });
 
    //delete a favorite for a user - NOT WORKING YET NEED TEST DATA
    app.delete("/api/last-search/:id", function(req, res) {
