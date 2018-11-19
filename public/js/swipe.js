@@ -1,10 +1,11 @@
 $(document).ready(function () {
+    var keys = require("../../keys")
+
     var map;
     var infowindow;
 
     var currentFood = 0;
     var typeOfFoodToSearch;
-    var otherObject = [];
 
     $(document.body).on("click", "#btn-yes", function () {
         if (currentFood < 9) {
@@ -147,7 +148,7 @@ $(document).ready(function () {
     //#################### Functions
 
     function getGeolocation() {
-        var queryURL = ""
+        var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=" + keys"
         $.ajax({
             url: queryURL,
             method: "POST"
