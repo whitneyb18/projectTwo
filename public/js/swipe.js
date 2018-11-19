@@ -147,7 +147,11 @@ $(document).ready(function () {
     //#################### Functions
 
     function getGeolocation() {
+<<<<<<< HEAD
+        var queryURL = "";
+=======
         var queryURL = ""
+>>>>>>> c5a366d843fce0e2cb2338013ef80787760cfd9d
         $.ajax({
             url: queryURL,
             method: "POST"
