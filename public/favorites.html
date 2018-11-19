@@ -6,30 +6,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
+    crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-        crossorigin="anonymous">
+    crossorigin="anonymous">
     <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/favorites.css">
     <title>Dine</title>
 </head>
+<style>
+    /* need this stuff to see map */
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #map {
+        height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
 
 <body>
 
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="./profile">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./swipe">New Search</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./results">Last Search</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="logout" href="/">Log Out</a>
+        </li>
+    </ul>
+
     <h1>Favorites</h1>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="alert alert-success">
-                Restaurant Name
-                <button type="button" class="btn btn-primary"><i class="fas fa-directions" aria-hidden="true"></i>
-                    Get
-                    Directions</button>
-                <button type="button" class="btn btn-light"><i class="fa fa-heart"></i> Favorite</button>
-                <button type="button" class="btn btn-light"><i class="far fa-heart"></i> Unfavorite</button>
-            </div>
+
+    <div class="container">
+
+        <div class="row favorite-filter">
+            <select id="filter-favorites">
+                <option value="all">See All</option>
+                <option value="mexican">Mexican</option>
+                <option value="italian">Italian</option>
+                <option value="salad">Salad</option>
+                <option value="american">American</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="thai">Thai</option>
+                <option value="chinese">Chinese</option>
+                <option value="indian">Indian</option>
+                <option value="pizza">Pizza</option>
+                <option value="dessert">Dessert</option>
+            </select>
         </div>
+
+    
+        <div id="favorite-result"></div>
     </div>
-
-
+  
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="./js/favorites.js"></script>
+    
 </body>
 
 </html>
