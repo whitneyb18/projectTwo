@@ -16,13 +16,17 @@ function generateFavorites(res) {
         pName.addClass("favRestaurantName col-sm-6")
 
         // create buttons
-        var directionBtn = $("<button>")
-        directionBtn.addClass("btn btn-primary col-sm-6")
-        directionBtn.attr("id", "btn-directions")
-        directionBtn.text(" Get Directions")
+        var directionLink = $("<a>");
+        directionLink.attr("target","_blank");
+        directionLink.attr("href","https://www.google.com/maps/dir//" + data.restaurant_name + "," + data.restaurant_address);
+        var directionBtn = $("<button>");
+        directionBtn.addClass("btn btn-primary col-md-3");
+        directionBtn.attr("id", "btn-directions");
+        directionBtn.text(" Get Directions");
         var checkYes = $("<i>");
         checkYes.addClass("fas fa-directions");
         directionBtn.prepend(checkYes);
+        directionLink.prepend(directionBtn);
 
         // eventually we'll add in unfavoriting a restaurant, will need this then
         // var favBtn = $("<button>")
@@ -35,7 +39,7 @@ function generateFavorites(res) {
         // favBtn.prepend(fafaNo);
 
         favoritesDiv.append(pName)
-        favoritesDiv.append(directionBtn)
+        favoritesDiv.append(directionLink)
         // favoritesDiv.append(favBtn)
 
         $("#favorite-result").append(favoritesDiv);

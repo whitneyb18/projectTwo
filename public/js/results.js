@@ -18,7 +18,7 @@ function generateRestaurants() {
             // create buttons
             var directionLink = $("<a>");
             directionLink.attr("target","_blank");
-            directionLink.attr("href","https://www.google.com/maps/dir//" + data.restaurant_name + "," + data.restaurant_name);
+            directionLink.attr("href","https://www.google.com/maps/dir//" + data.restaurant_name + "," + data.restaurant_address);
             var directionBtn = $("<button>");
             directionBtn.addClass("btn btn-primary col-md-3");
             directionBtn.attr("id", "btn-directions");
@@ -62,16 +62,6 @@ $(document.body).on("click", "#btn-fav", function() {
     }).then(function() {
         console.log("favorited")
     })
-})
-
-$(document.body).on("click", "#btn-directions", function() {
-    // console.log("favorited")
-    var restaurantAddress = $(this).attr("data-address")
-
-    console.log(restaurantAddress)
-
-    "https://www.google.com/maps/dir//" + restaurantAddress
-
 })
 
 // log out when log out CTA in header is clicked
