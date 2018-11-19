@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
+body {
+    background-image: url("../images/roman-kraft-156096-unsplash-opaque.jpg");
+    background-repeat: no-repeat center bottom;
+    background-size: cover;
+    background-attachment: fixed;
+} 
+
+ html {
+    min-height: 100%;
+}
+
+h1 {
+    font-family: 'Dosis', sans-serif;
+    font-size: 72px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    
+}
+
+#filter-favorites {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 35px;
+}
