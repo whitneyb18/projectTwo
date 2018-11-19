@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    var keys = require("../../keys")
-
     var map;
     var infowindow;
 
@@ -11,21 +9,11 @@ $(document).ready(function () {
         if (currentFood < 9) {
             typeOfFoodToSearch = foodTypeImage[currentFood].type
             currentFood++
-            $("#swipeImg").empty();
-            $("#buttonRow").empty();
-            displayFood(currentFood)
             getGeolocation();
         } else {
             typeOfFoodToSearch = foodTypeImage[currentFood].type
             // console.log(typeOfFoodToSearch)
             getGeolocation();
-          
-            $.ajax({
-                url: "/results",
-                method: "GET"
-            }).then(function() {
-                location.href = "/results"
-            })
         }
 
     });
@@ -148,7 +136,7 @@ $(document).ready(function () {
     //#################### Functions
 
     function getGeolocation() {
-        var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=" + keys"
+        var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAN-Maosba3R24Xqxv3aT-ZHcZ16dbzbdA"
         $.ajax({
             url: queryURL,
             method: "POST"
@@ -187,27 +175,30 @@ $(document).ready(function () {
             // limiting only to three.
             for (var i = 0; i < 3; i++) {
                 createMarker(results[i]);
-                // console.log(results[i])
-                // console.log(results[i].name)
-                // console.log(results[i].formatted_address)
-                // console.log(results[i].place_id)
-                // otherObject.push({type: typeOfFoodToSearch,
-                //     name: results[i].name,
-                //     address:results[i].formatted_address,
-                //     placeId: results[i].place_id});
-                    // console.log(otherObject)
-                    $.ajax({
-                        url: "/api/restaurants",
-                        method: "POST",
-                        data: {
-                            type: typeOfFoodToSearch,
-                            name: results[i].name,
-                            address: results[i].formatted_address,
-                            placeId: results[i].place_id
-                        }
-                    }).then(function() {
-                        
-                    })
+
+                $.ajax({
+                    url: "/api/restaurants",
+                    method: "POST",
+                    data: {
+                        type: typeOfFoodToSearch,
+                        name: results[i].name,
+                        address: results[i].formatted_address,
+                        placeId: results[i].place_id
+                    }
+                }).then(function() {
+                    $("#swipeImg").empty();
+                    $("#buttonRow").empty();
+                    displayFood(currentFood)
+                    
+                    if (typeOfFoodToSearch === "dessert")
+
+                                $.ajax({
+                            url: "/results",
+                            method: "GET"
+                        }).then(function() {
+                            location.href = "/results"
+                        })
+                });
             }
         }
     }
@@ -237,3 +228,16 @@ $("#logout").on('click', function (event) {
         location.href = "/"
     })
   })
+
+  function deleteRestaurantsTable() {
+    $.ajax({
+        url: "/api/last-search",
+        method: "DELETE"
+    }).then(function () {
+
+    })
+}
+
+deleteRestaurantsTable()
+
+
