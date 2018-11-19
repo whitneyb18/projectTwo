@@ -147,7 +147,7 @@ $(document).ready(function () {
     //#################### Functions
 
     function getGeolocation() {
-        var queryURL = ""
+        var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAN-Maosba3R24Xqxv3aT-ZHcZ16dbzbdA"
         $.ajax({
             url: queryURL,
             method: "POST"
@@ -207,7 +207,6 @@ $(document).ready(function () {
                     }).then(function() {
                         
                     })
-
             }
         }
     }
@@ -221,10 +220,19 @@ $(document).ready(function () {
         
         google.maps.event.addListener(marker, 'click', function () {
             infowindow.setContent(place.name);
-            infowindow.open(map, this);
-            
+            infowindow.open(map, this); 
         });
-    
     }
-
 })
+
+// log out when log out CTA in header is clicked
+$("#logout").on('click', function (event) {
+    event.preventDefault();
+  
+    $.ajax({
+      url: "/api/logout",
+      method: "GET"
+    }).then(function (res) {
+        location.href = "/"
+    })
+  })

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
     crossorigin="anonymous">
     <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/results.css">
     <title>Dine</title>
 </head>
 <style>
@@ -30,22 +31,28 @@
 </style>
 
 <body>
+
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="./profile">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./swipe">New Search</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./favorites">Favorites</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="logout" href="/">Log Out</a>
+        </li>
+    </ul>
+
     <h1>Results</h1>
     <div class="container">
-    <div class="row">
-        <!-- <div class="col-lg-6">
-            <div class="alert alert-success">
-                Restaurant Name
-                <button type="button" class="btn btn-primary"><i class="fas fa-directions" aria-hidden="true"></i>
-                    Get
-                    Directions</button>
-                <button type="button" class="btn btn-light"><i class="fa fa-heart"></i> Favorite</button>
-                <button type="button" class="btn btn-light"><i class="far fa-heart"></i> Unfavorite</button>
-            </div>
-        </div> -->
         <div id="restaurant-result"></div>
     </div>
-</div>
+
+    
   
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="./js/results.js"></script>
