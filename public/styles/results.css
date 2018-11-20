@@ -5,9 +5,9 @@ body {
     background-repeat: no-repeat center bottom;
     background-size: cover;
     background-attachment: fixed;
-} 
+}
 
- html {
+html {
     min-height: 100%;
 }
 
@@ -17,4 +17,19 @@ h1 {
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 50px;
+}
+
+.container {
+    background: rgba(148, 149, 150, 0.685);
+    border-radius: 5px;
+}
+
+.restaurantDiv {
+    margin-bottom: 15px;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
+    font-size: 24px;
 }

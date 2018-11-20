@@ -14,6 +14,7 @@ $(document).ready(function () {
             typeOfFoodToSearch = foodTypeImage[currentFood].type
             // console.log(typeOfFoodToSearch)
             getGeolocation();
+            
         }
 
     });
@@ -28,7 +29,7 @@ $(document).ready(function () {
             $.ajax({
                 url: "/results",
                 method: "GET"
-            }).then(function() {
+            }).then(function () {
                 location.href = "/results"
             })
         }
@@ -136,7 +137,9 @@ $(document).ready(function () {
     //#################### Functions
 
     function getGeolocation() {
+
         var queryURL = ""
+
         $.ajax({
             url: queryURL,
             method: "POST"
@@ -185,6 +188,8 @@ $(document).ready(function () {
                         address: results[i].formatted_address,
                         placeId: results[i].place_id
                     }
+
+
                 }).then(function() {
                     $("#swipeImg").empty();
                     $("#buttonRow").empty();
@@ -199,6 +204,7 @@ $(document).ready(function () {
                             location.href = "/results"
                         })
                 });
+
             }
         }
     }
@@ -209,10 +215,10 @@ $(document).ready(function () {
             map: map,
             position: place.geometry.location
         });
-        
+
         google.maps.event.addListener(marker, 'click', function () {
             infowindow.setContent(place.name);
-            infowindow.open(map, this); 
+            infowindow.open(map, this);
         });
     }
 })
@@ -220,10 +226,10 @@ $(document).ready(function () {
 // log out when log out CTA in header is clicked
 $("#logout").on('click', function (event) {
     event.preventDefault();
-  
+
     $.ajax({
-      url: "/api/logout",
-      method: "GET"
+        url: "/api/logout",
+        method: "GET"
     }).then(function (res) {
         location.href = "/"
     })
@@ -239,5 +245,4 @@ $("#logout").on('click', function (event) {
 }
 
 deleteRestaurantsTable()
-
 
