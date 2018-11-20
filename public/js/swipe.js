@@ -14,7 +14,7 @@ $(document).ready(function () {
             typeOfFoodToSearch = foodTypeImage[currentFood].type
             // console.log(typeOfFoodToSearch)
             getGeolocation();
-            
+
         }
 
     });
@@ -190,17 +190,17 @@ $(document).ready(function () {
                     }
 
 
-                }).then(function() {
+                }).then(function () {
                     $("#swipeImg").empty();
                     $("#buttonRow").empty();
                     displayFood(currentFood)
-                    
+
                     if (typeOfFoodToSearch === "dessert")
 
-                                $.ajax({
+                        $.ajax({
                             url: "/results",
                             method: "GET"
-                        }).then(function() {
+                        }).then(function () {
                             location.href = "/results"
                         })
                 });
@@ -233,9 +233,9 @@ $("#logout").on('click', function (event) {
     }).then(function (res) {
         location.href = "/"
     })
-  })
+})
 
-  function deleteRestaurantsTable() {
+function deleteRestaurantsTable() {
     $.ajax({
         url: "/api/last-search",
         method: "DELETE"
@@ -245,4 +245,3 @@ $("#logout").on('click', function (event) {
 }
 
 deleteRestaurantsTable()
-
