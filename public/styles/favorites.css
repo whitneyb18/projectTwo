@@ -41,3 +41,13 @@ p {
     padding: 0px;
     font-size: 24px;
 }
+
+.btn {
+    max-width: 150px;
+    margin-left: 10px;
+}
+
+#btn-directions {
+    margin-right: auto;
+    margin-left: auto;
+}
