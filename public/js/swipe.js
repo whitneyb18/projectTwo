@@ -14,13 +14,7 @@ $(document).ready(function () {
             typeOfFoodToSearch = foodTypeImage[currentFood].type
             // console.log(typeOfFoodToSearch)
             getGeolocation();
-
-            $.ajax({
-                url: "/results",
-                method: "GET"
-            }).then(function () {
-                location.href = "/results"
-            })
+            
         }
 
     });
