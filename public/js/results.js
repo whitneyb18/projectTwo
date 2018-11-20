@@ -3,7 +3,7 @@ function generateRestaurants() {
     $.ajax({
         url: "/api/last-search/:id",
         method: "GET"
-    }).then(function(res) {
+    }).then(function (res) {
         for (var i = 0; i < res[0].user_restaurant.length; i++) {
             var data = (res[0].user_restaurant[i])
 
@@ -17,16 +17,14 @@ function generateRestaurants() {
 
             // create buttons
             var directionLink = $("<a>");
-            directionLink.attr("target","_blank");
-            directionLink.attr("href","https://www.google.com/maps/dir//" + data.restaurant_name + "," + data.restaurant_name);
-            var directionBtn = $("<button>");
-            directionBtn.addClass("btn btn-primary col-md-3");
-            directionBtn.attr("id", "btn-directions");
-            directionBtn.text(" Get Directions");
+            directionLink.attr("target", "_blank");
+            directionLink.attr("href", "https://www.google.com/maps/dir//" + data.restaurant_name + "," + data.restaurant_name);
+            directionLink.addClass("btn btn-primary col-md-3");
+            directionLink.attr("id", "btn-directions");
+            directionLink.text(" Get Directions");
             var checkYes = $("<i>");
             checkYes.addClass("fas fa-directions");
-            directionBtn.prepend(checkYes);
-            directionLink.prepend(directionBtn);
+            directionLink.prepend(checkYes);
 
             var favBtn = $("<button>")
             favBtn.addClass("btn btn-light col-md-3")
@@ -50,7 +48,7 @@ function generateRestaurants() {
 generateRestaurants()
 
 // adds a restaurant to a users favorites list when the favorite button is clicked
-$(document.body).on("click", "#btn-fav", function() {
+$(document.body).on("click", "#btn-fav", function () {
     // console.log("favorited")
     var restaurantId = $(this).attr("data-foodID")
 
@@ -59,12 +57,12 @@ $(document.body).on("click", "#btn-fav", function() {
     $.ajax({
         url: apiURL,
         method: "POST"
-    }).then(function() {
+    }).then(function () {
         console.log("favorited")
     })
 })
 
-$(document.body).on("click", "#btn-directions", function() {
+$(document.body).on("click", "#btn-directions", function () {
     // console.log("favorited")
     var restaurantAddress = $(this).attr("data-address")
 
@@ -77,11 +75,11 @@ $(document.body).on("click", "#btn-directions", function() {
 // log out when log out CTA in header is clicked
 $("#logout").on('click', function (event) {
     event.preventDefault();
-  
+
     $.ajax({
-      url: "/api/logout",
-      method: "GET"
+        url: "/api/logout",
+        method: "GET"
     }).then(function (res) {
         location.href = "/"
     })
-  })
+})

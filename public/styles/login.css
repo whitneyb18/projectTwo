@@ -12,6 +12,15 @@ html {
     margin-top: 200px;
 } */
 
+.signUpBtn {
+    background-color: #4462b7;
+    color: white;
+}
+
+.btn-lg {
+    margin-bottom: 10px;
+}
+
 .title {
     font-size: 200px;
     color: #343a40;
@@ -44,6 +53,13 @@ html {
     width: 100%;
 }
 
+.smallLogo {
+    margin-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
 @media screen and (max-width: 768px) {
     body {
         background-image: url("../images/heather-schwartz-798959-unsplash-portrait.jpg");
@@ -66,5 +82,12 @@ html {
 
     .title {
         font-size: 100px;
+    }
+
+    .smallLogo {
+        margin-top: 4rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
     }
 }

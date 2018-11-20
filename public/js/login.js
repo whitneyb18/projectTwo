@@ -1,21 +1,24 @@
-$(document).ready(function() {
+$(document).ready(function () {
   $(".form-signup").hide();
   $(".form-signin").hide();
   $("#log-out-btn").hide();
 
-  $("#sign-up-btn").on("click", function() {
+  $("#sign-up-btn").on("click", function () {
     $(".hero-container").hide()
     $(".form-signup").show()
-    });
+    $("#logo").removeClass("dineLogo").addClass("smallLogo");
+  });
 
-  $("#log-in-btn").on("click", function() {
+  $("#log-in-btn").on("click", function () {
     $(".hero-container").hide()
     $(".form-signin").show()
-    });
+    $("#logo").removeClass("dineLogo").addClass("smallLogo");
+
+  });
 
 });
 
-$("#signIn").on('click', function(event){
+$("#signIn").on('click', function (event) {
   event.preventDefault();
   console.log('clicked');
   var userData = {
@@ -27,14 +30,14 @@ $("#signIn").on('click', function(event){
     url: "/api/login",
     method: "POST",
     data: userData
-  }).then(function(res){
+  }).then(function (res) {
     console.log(res);
     $.ajax({
-          url: "/api/session",
-          method: "GET",
-        }).then(function(res){
-          console.log(res);
-        })
+      url: "/api/session",
+      method: "GET",
+    }).then(function (res) {
+      console.log(res);
+    })
     location.href = "/profile"
   })
 });
@@ -69,4 +72,3 @@ $("#logout").on('click', function (event) {
     console.log(res);
   })
 })
-

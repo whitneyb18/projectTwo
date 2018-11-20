@@ -18,11 +18,11 @@ $(document).ready(function () {
             typeOfFoodToSearch = foodTypeImage[currentFood].type
             // console.log(typeOfFoodToSearch)
             getGeolocation();
-          
+
             $.ajax({
                 url: "/results",
                 method: "GET"
-            }).then(function() {
+            }).then(function () {
                 location.href = "/results"
             })
         }
@@ -39,7 +39,7 @@ $(document).ready(function () {
             $.ajax({
                 url: "/results",
                 method: "GET"
-            }).then(function() {
+            }).then(function () {
                 location.href = "/results"
             })
         }
@@ -147,11 +147,7 @@ $(document).ready(function () {
     //#################### Functions
 
     function getGeolocation() {
-<<<<<<< HEAD
-        var queryURL = "";
-=======
-        var queryURL = ""
->>>>>>> c5a366d843fce0e2cb2338013ef80787760cfd9d
+        var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAN-Maosba3R24Xqxv3aT-ZHcZ16dbzbdA";
         $.ajax({
             url: queryURL,
             method: "POST"
@@ -198,19 +194,19 @@ $(document).ready(function () {
                 //     name: results[i].name,
                 //     address:results[i].formatted_address,
                 //     placeId: results[i].place_id});
-                    // console.log(otherObject)
-                    $.ajax({
-                        url: "/api/restaurants",
-                        method: "POST",
-                        data: {
-                            type: typeOfFoodToSearch,
-                            name: results[i].name,
-                            address: results[i].formatted_address,
-                            placeId: results[i].place_id
-                        }
-                    }).then(function() {
-                        
-                    })
+                // console.log(otherObject)
+                $.ajax({
+                    url: "/api/restaurants",
+                    method: "POST",
+                    data: {
+                        type: typeOfFoodToSearch,
+                        name: results[i].name,
+                        address: results[i].formatted_address,
+                        placeId: results[i].place_id
+                    }
+                }).then(function () {
+
+                })
             }
         }
     }
@@ -221,10 +217,10 @@ $(document).ready(function () {
             map: map,
             position: place.geometry.location
         });
-        
+
         google.maps.event.addListener(marker, 'click', function () {
             infowindow.setContent(place.name);
-            infowindow.open(map, this); 
+            infowindow.open(map, this);
         });
     }
 })
@@ -232,11 +228,11 @@ $(document).ready(function () {
 // log out when log out CTA in header is clicked
 $("#logout").on('click', function (event) {
     event.preventDefault();
-  
+
     $.ajax({
-      url: "/api/logout",
-      method: "GET"
+        url: "/api/logout",
+        method: "GET"
     }).then(function (res) {
         location.href = "/"
     })
-  })
+})
