@@ -138,7 +138,7 @@ $(document).ready(function () {
 
     function getGeolocation() {
 
-        var queryURL = ""
+        var queryURL = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAN-Maosba3R24Xqxv3aT-ZHcZ16dbzbdA"
 
         $.ajax({
             url: queryURL,
