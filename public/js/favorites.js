@@ -17,16 +17,15 @@ function generateFavorites(res) {
 
         // create buttons
         var directionLink = $("<a>");
-        directionLink.attr("target","_blank");
-        directionLink.attr("href","https://www.google.com/maps/dir//" + data.restaurant_name + "," + data.restaurant_address);
-        var directionBtn = $("<button>");
-        directionBtn.addClass("btn btn-primary col-md-3");
-        directionBtn.attr("id", "btn-directions");
-        directionBtn.text(" Get Directions");
+
+        directionLink.attr("target", "_blank");
+        directionLink.attr("href", "https://www.google.com/maps/dir//" + data.restaurant_name + "," + data.restaurant_name);
+        directionLink.addClass("btn btn-primary col-md-6");
+        directionLink.attr("id", "btn-directions");
+        directionLink.text(" Get Directions");
         var checkYes = $("<i>");
         checkYes.addClass("fas fa-directions");
-        directionBtn.prepend(checkYes);
-        directionLink.prepend(directionBtn);
+        directionLink.prepend(checkYes);
 
         // eventually we'll add in unfavoriting a restaurant, will need this then
         // var favBtn = $("<button>")
@@ -51,7 +50,7 @@ function getAllFavorites() {
     $.ajax({
         url: "/api/favorites/:id",
         method: "GET"
-    }).then(function(res) {
+    }).then(function (res) {
         generateFavorites(res)
     });
 };
@@ -64,7 +63,7 @@ function getTypeFavorites(foodType) {
         $.ajax({
             url: "/api/favorites/" + foodType + "/:id",
             method: "GET"
-        }).then(function(res) {
+        }).then(function (res) {
             generateFavorites(res)
         });
     }
@@ -74,7 +73,7 @@ function getTypeFavorites(foodType) {
 getAllFavorites()
 
 // when filter is selected display results of that type
-$("#filter-favorites").on("change", function() {
+$("#filter-favorites").on("change", function () {
     foodType = $("#filter-favorites").val()
     getTypeFavorites(foodType)
 });
@@ -82,11 +81,11 @@ $("#filter-favorites").on("change", function() {
 // log out when log out CTA in header is clicked
 $("#logout").on('click', function (event) {
     event.preventDefault();
-  
+
     $.ajax({
-      url: "/api/logout",
-      method: "GET"
+        url: "/api/logout",
+        method: "GET"
     }).then(function (res) {
         location.href = "/"
     })
-  })
+})
